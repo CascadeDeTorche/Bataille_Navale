@@ -147,6 +147,10 @@ int Demanden()
 int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
 {
     int touche;
+    int task=1;
+    while(task)
+    {
+
     int y=0;
     if(l=='A')
     {
@@ -188,20 +192,31 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
     {
         y=9;
     }
-   if(Recu[y][n-1]=='~')
+     if(Tire[y][n-1]=='X'||Tire[y][n-1]=='O')
+   {
+       cout<<"Vous avez déjà tire a cet endroit veuillez changer"<<endl;
+       cout<<"Ou voulez-vous tirer : "<<endl;
+        l=Demandel();
+        n=Demanden();
+    }
+   else if(Recu[y][n-1]=='~')
    {
        cout<<"Dans l'eau"<<endl;
        Tire[y][n-1]='O';
       touche=nbtouche;
-
+        task=0;
    }
-   if(Recu[y][n-1]=='1')
+   else if(Recu[y][n-1]=='1')
    {
        cout<<"Touché"<<endl;
        Tire[y][n-1]='X';
        Recu[y][n-1]='T';
        touche=nbtouche+1;
+       task=0;
    }
+
+    }
+
     return touche;
 
 }
