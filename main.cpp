@@ -7,84 +7,123 @@
 
 using namespace std;
 
-void Generation(int longueur,char Joueur2[10][10])
+void Generation(int longueur, char Array[10][10]) // Génération des bateaux par l'ordinateur
 {
     int coordx;
     int coordy;
     int dir;
-    switch(longueur)
+    int task = 1;
+    while(task)
     {
-        case 2:
-            dir = rand()%2; // aléatoire entre 0 et 1
-            switch(dir)
-            {
-                case 0:
-                    coordx = rand()%10; // aléatoire entre 0 et 9
-                    coordy = rand()%9; // aléatoire entre 0 et 8
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx][coordy+1] = '1';
-                    break;
-                case 1:
-                    coordx = rand()%9; // aléatoire entre 0 et 8
-                    coordy = rand()%10; // aléatoire entre 0 et 9
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx+1][coordy] = '1';
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 3:
-            dir = rand()%2; // aléatoire entre 0 et 1
-            switch(dir)
-            {
-                case 0:
-                    coordx = rand()%10; // aléatoire entre 0 et 9
-                    coordy = rand()%8; // aléatoire entre 0 et 7
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx][coordy+1] = '1';
-                    Joueur2[coordx][coordy+2] = '1';
-                    break;
-                case 1:
-                    coordx = rand()%8; // aléatoire entre 0 et 7
-                    coordy = rand()%10; // aléatoire entre 0 et 9
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx+1][coordy] = '1';
-                    Joueur2[coordx+2][coordy] = '1';
-                    break;
-                default:
-                    break;
-            }
-            break;
-        case 4:
-            dir = rand()%2; // aléatoire entre 0 et 1
-            switch(dir)
-            {
-                case 0:
-                    coordx = rand()%10; // aléatoire entre 0 et 9
-                    coordy = rand()%7; // aléatoire entre 0 et 6
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx][coordy+1] = '1';
-                    Joueur2[coordx][coordy+2] = '1';
-                    Joueur2[coordx][coordy+3] = '1';
-                    break;
-                case 1:
-                    coordx = rand()%7; // aléatoire entre 0 et 6
-                    coordy = rand()%10; // aléatoire entre 0 et 9
-                    Joueur2[coordx][coordy] = '1';
-                    Joueur2[coordx+1][coordy] = '1';
-                    Joueur2[coordx+2][coordy] = '1';
-                    Joueur2[coordx+3][coordy] = '1';
-                    break;
-                default:
-                    break;
-            }
-            break;
-        default:
-            break;
+        switch(longueur)
+        {
+            case 2:
+                dir = rand()%2; // aléatoire entre 0 et 1
+                switch(dir)
+                {
+                    case 0:
+                        coordx = rand()%10; // aléatoire entre 0 et 9
+                        coordy = rand()%9; // aléatoire entre 0 et 8
+                        if(Array[coordx][coordy]=='1' || Array[coordx][coordy+1]=='1')
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx][coordy+1] = '1';
+                        task = 0;
+                        break;
+                    case 1:
+                        coordx = rand()%9; // aléatoire entre 0 et 8
+                        coordy = rand()%10; // aléatoire entre 0 et 9
+                        if(Array[coordx][coordy]=='1' || Array[coordx+1][coordy]=='1')
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx+1][coordy] = '1';
+                        task = 0;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 3:
+                dir = rand()%2; // aléatoire entre 0 et 1
+                switch(dir)
+                {
+                    case 0:
+                        coordx = rand()%10; // aléatoire entre 0 et 9
+                        coordy = rand()%8; // aléatoire entre 0 et 7
+                        if(Array[coordx][coordy]=='1' || Array[coordx][coordy+1]=='1' || Array[coordx][coordy+2]=='1')
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx][coordy+1] = '1';
+                        Array[coordx][coordy+2] = '1';
+                        task = 0;
+                        break;
+                    case 1:
+                        coordx = rand()%8; // aléatoire entre 0 et 7
+                        coordy = rand()%10; // aléatoire entre 0 et 9
+                        if(Array[coordx][coordy]=='1' || Array[coordx+1][coordy]=='1' || Array[coordx+2][coordy])
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx+1][coordy] = '1';
+                        Array[coordx+2][coordy] = '1';
+                        task = 0;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 4:
+                dir = rand()%2; // aléatoire entre 0 et 1
+                switch(dir)
+                {
+                    case 0:
+                        coordx = rand()%10; // aléatoire entre 0 et 9
+                        coordy = rand()%7; // aléatoire entre 0 et 6
+                        if(Array[coordx][coordy]=='1' || Array[coordx][coordy+1]=='1' || Array[coordx][coordy+2]=='1' || Array[coordx][coordy+3]=='1')
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx][coordy+1] = '1';
+                        Array[coordx][coordy+2] = '1';
+                        Array[coordx][coordy+3] = '1';
+                        task = 0;
+                        break;
+                    case 1:
+                        coordx = rand()%7; // aléatoire entre 0 et 6
+                        coordy = rand()%10; // aléatoire entre 0 et 9
+                        if(Array[coordx][coordy]=='1' || Array[coordx+1][coordy]=='1' || Array[coordx+2][coordy]=='1' || Array[coordx+3][coordy]=='1')
+                        {
+                            break;
+                        }
+                        else
+                        Array[coordx][coordy] = '1';
+                        Array[coordx+1][coordy] = '1';
+                        Array[coordx+2][coordy] = '1';
+                        Array[coordx+3][coordy] = '1';
+                        task = 0;
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
-
 
 char Demandel()
 { char l;
@@ -105,7 +144,7 @@ int Demanden()
     cin>>n;
     return n;
 }
-void Tir(char l, int n,char Tire[10][10])
+int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
 {
     int y=0;
     if(l=='A')
@@ -148,7 +187,20 @@ void Tir(char l, int n,char Tire[10][10])
     {
         y=9;
     }
-    Tire[y][n-1]='X';
+   if(Recu[y][n-1]=='0')
+   {
+       cout<<"Dans l'eau"<<endl;
+       Tire[y][n-1]='O';
+       return nbtouche;
+
+   }
+   if(Recu[y][n-1]=='1')
+   {
+       cout<<"Touché"<<endl;
+       Tire[y][n-1]='X';
+       Recu[y][n-1]='T';
+       return nbtouche+1;
+   }
 }
 
 void Affiche(char Tab[10][10])
@@ -446,12 +498,23 @@ int creationbat(char casedepl, int casedepn,char Tab[10][10],int taille)
 
 void InitJoueur(char Tab[10][10],int n)
 {
+    int choix;
     char Lettre;
     int numero;
     int bat1=0;
     int bat2=0;
     int bat3=0;
     int bat4=0;
+    cout<<"1 : automatique, 2 : Manuelle";
+    cin>>choix;
+    if(choix==1)
+    {
+        Generation(2,Tab);
+        Generation(3,Tab);
+        Generation(3,Tab);
+        Generation(4,Tab);
+    }
+    else if(choix==2){
     while(bat1<1)
     {
         cout<<"Joueur "<<n<<" Creation du bateau taille 2, case de depart :"<<endl;
@@ -487,6 +550,7 @@ void InitJoueur(char Tab[10][10],int n)
         numero=Demanden();
         bat4=creationbat(Lettre,numero,Tab,4);
     }
+    }
     system("cls");
     cout<<"Joueur "<<n<<" voici votre plan : (entrer n'importe quoi pour quitter ce menu)"<<endl;
 
@@ -498,7 +562,6 @@ int main()
     int nbtouchej1;
     int nbtouchej2;
     srand((time(0)));
-    int bat1j1=0;
     char Lettre;
     int numero;
     char Joueur1[10][10];
@@ -530,14 +593,29 @@ int main()
     }
     if(nbjoueur==1)
     {
-          InitJoueur(Joueur1,1);
+        Generation(2,Joueur2);
+        Generation(3,Joueur2);
+        Generation(3,Joueur2);
+        Generation(4,Joueur2);
+        Affiche(Joueur2);
+          //InitJoueur(Joueur1,1);
+
     }
     if(nbjoueur==2){
     InitJoueur(Joueur1,1);
     InitJoueur(Joueur2,2);
     while(nbtouchej1<12 && nbtouchej2<12)
     {
-
+         system("cls");
+         cout<<"Tir Joueur 1 : "<<endl;
+         Affiche(TirJoueur1);
+         cout<<"Bateau Joueur 1 : "<<endl;
+         Affiche(Joueur1);
+         cout<<"Ou voulez-vous tirer : "<<endl;
+         Lettre=Demandel();
+         numero=Demanden();
+         nbtouchej1=Tir(Lettre,numero,TirJoueur1,Joueur2,nbtouchej1);
+         Affiche(TirJoueur1);
     }
     }
 
