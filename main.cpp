@@ -3,16 +3,69 @@
 using namespace std;
 
 
-void Demande(char l,int n)
-{
+char Demandel()
+{ char l;
     cout<<"Quel lettre voulez vous ? : ";
     cin>>l;
     while((((l!='A')&(l!='B'))&((l!='C')&(l!='D')))&(((l!='E')&(l!='F'))&((l!='G')&(l!='=H')))&((l!='I')&(l!='J')))
     {
-        cout<"Lettre invalide"
+        cout<<"Invalide"<<endl;
         cout<<"Quel lettre voulez vous ? : ";
         cin>>l;
     }
+    return l;
+}
+int Demanden()
+{
+    int n;
+    cout<<"Quel numero voulez vous ? : ";
+    cin>>n;
+    return n;
+}
+void Tir(char l, int n,char Tire[10][10])
+{
+    int y=0;
+    if(l=='A')
+    {
+        y=0;
+    }
+     if(l=='B')
+    {
+        y=1;
+    }
+    if(l=='C')
+    {
+        y=2;
+    }
+    if(l=='D')
+    {
+        y=3;
+    }
+    if(l=='E')
+    {
+        y=4;
+    }
+     if(l=='F')
+    {
+        y=5;
+    }
+     if(l=='G')
+    {
+        y=6;
+    }
+    if(l=='H')
+    {
+        y=7;
+    }
+    if(l=='I')
+    {
+        y=8;
+    }
+     if(l=='J')
+    {
+        y=9;
+    }
+    Tire[y][n-1]='X';
 }
 
 void Affiche(char Tab[10][10], int n)
@@ -93,12 +146,16 @@ int main()
 
         for(int j=0;j<10;j++)
         {
-            Joueur1[i][j]='-';
-            Joueur2[i][j]='-';
+            TirJoueur1[i][j]='-';
+            TirJoueur2[i][j]='-';
         }
 
     }
-    Affiche(Joueur1,10);
+    Affiche(TirJoueur1,10);
+    Lettre=Demandel();
+    numero=Demanden();
+    Tir(Lettre,numero,TirJoueur1);
+    Affiche(TirJoueur1,10);
     if (nbjoueur==2)
     {
 
