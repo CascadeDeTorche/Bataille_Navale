@@ -756,7 +756,18 @@ int main()
          nbtouchej2=TirIA(Lettre,numero,TirJoueur2,Joueur1,nbtouchej2);
          tour=tour+1;
        }
+        if(nbtouchej1<nbtouchej2)
+    {
+        cout<<"Tu as perdu contre l'ordinateur (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cin>>wait;
 
+    }
+     if(nbtouchej2<nbtouchej1)
+    {
+        cout<<"Bravo Joueur 1 tu as gagne contre l'ordinateur (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cin>>wait;
+
+    }
     }
     if(nbjoueur==2){
 
@@ -804,13 +815,13 @@ int main()
     system("cls");
     if(nbtouchej1<nbtouchej2)
     {
-        cout<<"Bravo Joueur 2 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cout<<"Bravo Joueur 2 tu as gagne (pour quitter le jeu rentre n'importe quoi) "<<endl;
         cin>>wait;
 
     }
      if(nbtouchej2<nbtouchej1)
     {
-        cout<<"Bravo Joueur 1 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cout<<"Bravo Joueur 1 tu as gagne (pour quitter le jeu rentre n'importe quoi) "<<endl;
         cin>>wait;
 
     }
