@@ -495,6 +495,8 @@ void InitJoueur(char Tab[10][10],int n)
 }
 int main()
 {
+    int nbtouchej1;
+    int nbtouchej2;
     srand((time(0)));
     int bat1j1=0;
     char Lettre;
@@ -504,7 +506,7 @@ int main()
     char TirJoueur1[10][10];
     char TirJoueur2[10][10];
     int nbjoueur=0;
-    cout << "Bonjour et bievenue dans la bataille navale" << endl;
+    cout <<"Bonjour et bievenue dans la bataille navale" << endl;
     cout <<"Voulez-vous jouer a 1 ou 2 joueurs :";
     cin >>nbjoueur;
     while(nbjoueur>2 ||nbjoueur<1)
@@ -533,16 +535,12 @@ int main()
     if(nbjoueur==2){
     InitJoueur(Joueur1,1);
     InitJoueur(Joueur2,2);
-    }
-    /*
-    while(bat1j1<1)
+    while(nbtouchej1<12 && nbtouchej2<12)
     {
-         cout<<"Création du bateau taille 2 case de départ"<<endl;
-    Lettre=Demandel();
-    numero=Demanden();
-    bat1j1=creationbat(Lettre,numero,Joueur1,3);
+
     }
-    */
+    }
+
 
     return 0;
 }
