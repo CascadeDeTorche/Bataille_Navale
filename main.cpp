@@ -1,5 +1,5 @@
 #include <iostream>
-
+#include <string>
 using namespace std;
 
 
@@ -82,6 +82,7 @@ int main()
         for(int j=0;j<10;j++)
         {
             Joueur1[i][j]='-';
+            Joueur2[i][j]='-';
         }
 
     }
