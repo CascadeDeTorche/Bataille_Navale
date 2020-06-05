@@ -146,6 +146,7 @@ int Demanden()
 }
 int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
 {
+    int touche;
     int y=0;
     if(l=='A')
     {
@@ -187,11 +188,11 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
     {
         y=9;
     }
-   if(Recu[y][n-1]=='0')
+   if(Recu[y][n-1]=='~')
    {
        cout<<"Dans l'eau"<<endl;
        Tire[y][n-1]='O';
-       return nbtouche;
+      touche=nbtouche;
 
    }
    if(Recu[y][n-1]=='1')
@@ -199,8 +200,10 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
        cout<<"Touché"<<endl;
        Tire[y][n-1]='X';
        Recu[y][n-1]='T';
-       return nbtouche+1;
+       touche=nbtouche+1;
    }
+    return touche;
+
 }
 
 void Affiche(char Tab[10][10])
@@ -505,7 +508,7 @@ void InitJoueur(char Tab[10][10],int n)
     int bat2=0;
     int bat3=0;
     int bat4=0;
-    cout<<"1 : automatique, 2 : Manuelle";
+    cout<<"1 : automatique, 2 : Manuelle : ";
     cin>>choix;
     if(choix==1)
     {
@@ -559,8 +562,8 @@ void InitJoueur(char Tab[10][10],int n)
 }
 int main()
 {
-    int nbtouchej1;
-    int nbtouchej2;
+    int nbtouchej1=0;
+    int nbtouchej2=0;
     srand((time(0)));
     char Lettre;
     int numero;
@@ -584,10 +587,10 @@ int main()
 
         for(int j=0;j<10;j++)
         {
-            TirJoueur1[i][j]='-';
-            TirJoueur2[i][j]='-';
-            Joueur1[i][j]='0';
-            Joueur2[i][j]='0';
+            TirJoueur1[i][j]='~';
+            TirJoueur2[i][j]='~';
+            Joueur1[i][j]='~';
+            Joueur2[i][j]='~';
         }
 
     }
@@ -602,7 +605,13 @@ int main()
 
     }
     if(nbjoueur==2){
+
+    cout<<"Joueur 1 : ";
     InitJoueur(Joueur1,1);
+
+    system("cls");
+     cout<<"Joueur 2 : ";
+      system("cls");
     InitJoueur(Joueur2,2);
     while(nbtouchej1<12 && nbtouchej2<12)
     {
@@ -615,7 +624,23 @@ int main()
          Lettre=Demandel();
          numero=Demanden();
          nbtouchej1=Tir(Lettre,numero,TirJoueur1,Joueur2,nbtouchej1);
-         Affiche(TirJoueur1);
+        cout<<"Joueur 1 voici vos Tirs : (entrer n'importe quoi pour quitter ce menu)"<<endl;
+        Affiche(TirJoueur1);
+        cin>>Lettre;
+
+        system("cls");
+         cout<<"Tir Joueur 2 : "<<endl;
+         Affiche(TirJoueur2);
+         cout<<"Bateau Joueur 2 : "<<endl;
+         Affiche(Joueur2);
+         cout<<"Ou voulez-vous tirer : "<<endl;
+         Lettre=Demandel();
+         numero=Demanden();
+         nbtouchej2=Tir(Lettre,numero,TirJoueur2,Joueur1,nbtouchej2);
+        cout<<"Joueur 1 voici vos Tirs : (entrer n'importe quoi pour quitter ce menu)"<<endl;
+        Affiche(TirJoueur2);
+        cin>>Lettre;
+
     }
     }
 
