@@ -123,8 +123,248 @@ void Affiche(char Tab[10][10], int n)
 }
 
 
+int creationbat(char casedepl, int casedepn,char Tab[10][10],int taille)
+{
+    int cbon=1;
+  int marche=0;
+    int y=0;
+    if(casedepl=='A')
+    {
+        y=0;
+    }
+     if(casedepl=='B')
+    {
+        y=1;
+    }
+    if(casedepl=='C')
+    {
+        y=2;
+    }
+    if(casedepl=='D')
+    {
+        y=3;
+    }
+    if(casedepl=='E')
+    {
+        y=4;
+    }
+     if(casedepl=='F')
+    {
+        y=5;
+    }
+     if(casedepl=='G')
+    {
+        y=6;
+    }
+    if(casedepl=='H')
+    {
+        y=7;
+    }
+    if(casedepl=='I')
+    {
+        y=8;
+    }
+     if(casedepl=='J')
+    {
+        y=9;
+    }
+    char direction;
+
+    cout<<"D = droite, G = Gauche, H = Haut, B=Bas  :";
+    cin>>direction;
+    while(((direction!='D')&(direction!='G'))&(direction!='H')&(direction!='B'))
+    {
+        cout<<"Invalide petit garnement"<<endl;
+        cout<<"D = droite, G = Gauche, H = Haut, B=Bas  :";
+        cin>>direction;
+    }
+    if(direction=='G')
+    {
+        for(int i=0;i<taille-1;i++){
+        if(casedepn-1<(0+taille-1)||(Tab[y][casedepn-1-i]=='1'))
+        {
+            if((Tab[y][casedepn-1+i])=='1')
+            {
+                cout<<"impossible de poser le bateau changez de direction"<<endl;
+                cbon=0;
+            }
+            else if(cbon==0)
+            {
+
+            }
+            else
+                {
+
+                cbon=2;
+            }
+
+        }
+        else{
+
+        }
+        }
+        if(cbon==1)
+        {
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y][casedepn-1-i]='1';
+            }
+        }
+        if(cbon==2)
+        {
+             cout<<"Direction impossible nous avons mis dans la direction oposee"<<endl;
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y][casedepn-1-i]='1';
+            }
+        }
+        else
+        {
+
+        }
+    }
+       if(direction=='D')
+    {
+        for(int i=0;i<taille-1;i++){
+        if(casedepn-1>(9-taille-1)||(Tab[y][casedepn-1+i]=='1'))
+        {
+            if((Tab[y][casedepn-1-i])=='1')
+            {
+                cout<<"impossible de poser le bateau changez de direction"<<endl;
+                cbon=0;
+            }
+            else if(cbon==0)
+            {
+
+            }
+            else
+                {
+
+                cbon=2;
+            }
+
+        }
+        else{
+
+        }
+        }
+        if(cbon==1)
+        {
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y][casedepn-1+i]='1';
+            }
+        }
+        if(cbon==2)
+        {
+             cout<<"Direction impossible nous avons mis dans la direction oposee"<<endl;
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y][casedepn-1-i]='1';
+            }
+        }
+        else
+        {
+
+        }
+    }
+if(direction=='H')
+    {
+        for(int i=0;i<taille-1;i++){
+        if(y<(0+taille-1)||(Tab[y-i][casedepn-1]=='1'))
+        {
+            if((Tab[y+i][casedepn-1])=='1')
+            {
+                cout<<"impossible de poser le bateau changez de direction"<<endl;
+                cbon=0;
+            }
+            else if(cbon==0)
+            {
+
+            }
+            else
+                {
+
+                cbon=2;
+            }
+
+        }
+        else{
+
+        }
+        }
+        if(cbon==1)
+        {
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y-i][casedepn-1]='1';
+            }
+        }
+        if(cbon==2)
+        {
+            cout<<"Direction impossible nous avons mis dans la direction oposee"<<endl;
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y+i][casedepn-1]='1';
+            }
+        }
+        else
+        {
+
+        }
+    }
+    if(direction=='B')
+    {
+        for(int i=0;i<taille-1;i++){
+        if(y>(9-taille-1)||(Tab[y+i][casedepn-1]=='1'))
+        {
+            if((Tab[y-i][casedepn-1])=='1')
+            {
+                cout<<"impossible de poser le bateau changez de direction"<<endl;
+                cbon=0;
+            }
+            else if(cbon==0)
+            {
+
+            }
+            else
+                {
+
+                cbon=2;
+            }
+
+        }
+        else{
+
+        }
+        }
+        if(cbon==1)
+        {
+            for(int i =0;i<taille;i++)
+            {
+
+                Tab[y+i][casedepn-1]='1';
+            }
+        }
+        if(cbon==2)
+        {
+            cout<<"Direction impossible nous avons mis dans la direction oposee"<<endl;
+            for(int i =0;i<taille;i++)
+            {
+                Tab[y-i][casedepn-1]='1';
+            }
+        }
+        else
+        {
+
+        }
+    }
+    return cbon;
+}
+
 int main()
 {
+    int bat1j1=0;
     char Lettre;
     int numero;
     char Joueur1[10][10];
@@ -149,15 +389,22 @@ int main()
         {
             TirJoueur1[i][j]='-';
             TirJoueur2[i][j]='-';
+            Joueur1[i][j]='0';
+            Joueur2[i][j]='0';
         }
 
     }
-    Affiche(TirJoueur1,10);
+
+    system("cls");
+    while(bat1j1<1)
+    {
+         cout<<"Création du bateau taille 2 case de départ"<<endl;
     Lettre=Demandel();
     numero=Demanden();
-    Tir(Lettre,numero,TirJoueur1);
-    system("cls");
-    Affiche(TirJoueur1,10);
+    bat1j1=creationbat(Lettre,numero,Joueur1,3);
+    }
+    Affiche(Joueur1,10);
+
     if (nbjoueur==2)
     {
 
