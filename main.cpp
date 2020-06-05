@@ -1,14 +1,96 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <time.h>
+#include <stdio.h>
+#include <stdlib.h>
+
 using namespace std;
+
+void Generation(int longueur,char Joueur2[10][10])
+{
+    int coordx;
+    int coordy;
+    int dir;
+    switch(longueur)
+    {
+        case 2:
+            dir = rand()%2; // aléatoire entre 0 et 1
+            switch(dir)
+            {
+                case 0:
+                    coordx = rand()%10; // aléatoire entre 0 et 9
+                    coordy = rand()%9; // aléatoire entre 0 et 8
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx][coordy+1] = '1';
+                    break;
+                case 1:
+                    coordx = rand()%9; // aléatoire entre 0 et 8
+                    coordy = rand()%10; // aléatoire entre 0 et 9
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx+1][coordy] = '1';
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 3:
+            dir = rand()%2; // aléatoire entre 0 et 1
+            switch(dir)
+            {
+                case 0:
+                    coordx = rand()%10; // aléatoire entre 0 et 9
+                    coordy = rand()%8; // aléatoire entre 0 et 7
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx][coordy+1] = '1';
+                    Joueur2[coordx][coordy+2] = '1';
+                    break;
+                case 1:
+                    coordx = rand()%8; // aléatoire entre 0 et 7
+                    coordy = rand()%10; // aléatoire entre 0 et 9
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx+1][coordy] = '1';
+                    Joueur2[coordx+2][coordy] = '1';
+                    break;
+                default:
+                    break;
+            }
+            break;
+        case 4:
+            dir = rand()%2; // aléatoire entre 0 et 1
+            switch(dir)
+            {
+                case 0:
+                    coordx = rand()%10; // aléatoire entre 0 et 9
+                    coordy = rand()%7; // aléatoire entre 0 et 6
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx][coordy+1] = '1';
+                    Joueur2[coordx][coordy+2] = '1';
+                    Joueur2[coordx][coordy+3] = '1';
+                    break;
+                case 1:
+                    coordx = rand()%7; // aléatoire entre 0 et 6
+                    coordy = rand()%10; // aléatoire entre 0 et 9
+                    Joueur2[coordx][coordy] = '1';
+                    Joueur2[coordx+1][coordy] = '1';
+                    Joueur2[coordx+2][coordy] = '1';
+                    Joueur2[coordx+3][coordy] = '1';
+                    break;
+                default:
+                    break;
+            }
+            break;
+        default:
+            break;
+    }
+}
 
 
 char Demandel()
 { char l;
     cout<<"Quel lettre voulez vous ? : ";
     cin>>l;
-    while((((l!='A')&(l!='B'))&((l!='C')&(l!='D')))&(((l!='E')&(l!='F'))&((l!='G')&(l!='=H')))&((l!='I')&(l!='J')))
+    while((((l!='A')&(l!='B'))&((l!='C')&(l!='D')))&(((l!='E')&(l!='F'))&((l!='G')&(l!='H')))&((l!='I')&(l!='J')))
     {
         cout<<"Invalide"<<endl;
         cout<<"Quel lettre voulez vous ? : ";
@@ -69,10 +151,10 @@ void Tir(char l, int n,char Tire[10][10])
     Tire[y][n-1]='X';
 }
 
-void Affiche(char Tab[10][10], int n)
+void Affiche(char Tab[10][10])
 {
     cout<<"  1 2 3 4 5 6 7 8 9 10"<<endl;
-    for(int i=0;i<n;i++)
+    for(int i=0;i<10;i++)
     {
         if(i==0)
         {
@@ -223,7 +305,7 @@ int creationbat(char casedepl, int casedepn,char Tab[10][10],int taille)
 
         }
     }
-       if(direction=='D')
+    if(direction=='D')
     {
         for(int i=0;i<taille-1;i++){
         if(casedepn-1>(9-taille-1)||(Tab[y][casedepn-1+i]=='1'))
@@ -268,7 +350,7 @@ int creationbat(char casedepl, int casedepn,char Tab[10][10],int taille)
 
         }
     }
-if(direction=='H')
+    if(direction=='H')
     {
         for(int i=0;i<taille-1;i++){
         if(y<(0+taille-1)||(Tab[y-i][casedepn-1]=='1'))
@@ -362,8 +444,58 @@ if(direction=='H')
     return cbon;
 }
 
+void InitJoueur(char Tab[10][10],int n)
+{
+    char Lettre;
+    int numero;
+    int bat1=0;
+    int bat2=0;
+    int bat3=0;
+    int bat4=0;
+    while(bat1<1)
+    {
+        cout<<"Joueur "<<n<<" Creation du bateau taille 2, case de depart :"<<endl;
+        Lettre=Demandel();
+        numero=Demanden();
+        bat1=creationbat(Lettre,numero,Tab,2);
+    }
+    system("cls");
+    Affiche(Tab);
+
+    while(bat2<1)
+    {
+        cout<<"Joueur "<<n<<" Creation du premier bateau de taille 3, case de depart:"<<endl;
+        Lettre=Demandel();
+        numero=Demanden();
+        bat2=creationbat(Lettre,numero,Tab,3);
+    }
+    system("cls");
+    Affiche(Tab);
+    while(bat3<1)
+    {
+        cout<<"Joueur "<<n<<" Creation du deuxieme bateau de taille 3, case de depart:"<<endl;
+        Lettre=Demandel();
+        numero=Demanden();
+        bat3=creationbat(Lettre,numero,Tab,3);
+    }
+    system("cls");
+    Affiche(Tab);
+        while(bat4<1)
+    {
+        cout<<"Joueur "<<n<<" Creation du bateau de taille 4, case de depart:"<<endl;
+        Lettre=Demandel();
+        numero=Demanden();
+        bat4=creationbat(Lettre,numero,Tab,4);
+    }
+    system("cls");
+    cout<<"Joueur "<<n<<" voici votre plan : (entrer n'importe quoi pour quitter ce menu)"<<endl;
+
+    Affiche(Tab);
+     cin>>Lettre;
+}
 int main()
 {
+    srand((time(0)));
     int bat1j1=0;
     char Lettre;
     int numero;
@@ -394,8 +526,15 @@ int main()
         }
 
     }
-
-    system("cls");
+    if(nbjoueur==1)
+    {
+          InitJoueur(Joueur1,1);
+    }
+    if(nbjoueur==2){
+    InitJoueur(Joueur1,1);
+    InitJoueur(Joueur2,2);
+    }
+    /*
     while(bat1j1<1)
     {
          cout<<"Création du bateau taille 2 case de départ"<<endl;
@@ -403,12 +542,7 @@ int main()
     numero=Demanden();
     bat1j1=creationbat(Lettre,numero,Joueur1,3);
     }
-    Affiche(Joueur1,10);
-
-    if (nbjoueur==2)
-    {
-
-    }
+    */
 
     return 0;
 }
