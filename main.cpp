@@ -124,7 +124,42 @@ void Generation(int longueur, char Array[10][10]) // Génération des bateaux par 
         }
     }
 }
-
+char RandLettre (){
+    char l;
+    switch(rand()%10){
+        case 0:
+            l = 'A';
+            break;
+        case 1:
+            l = 'B';
+            break;
+        case 2:
+            l = 'C';
+            break;
+        case 3:
+            l = 'D';
+            break;
+        case 4:
+            l = 'E';
+            break;
+        case 5:
+            l = 'F';
+            break;
+        case 6:
+            l = 'G';
+            break;
+        case 7:
+            l = 'H';
+            break;
+        case 8:
+            l = 'I';
+            break;
+        default:
+            l = 'J';
+            break;
+    }
+    return l;
+}
 char Demandel()
 { char l;
     cout<<"Quel lettre voulez vous ? : ";
@@ -194,7 +229,7 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
     }
      if(Tire[y][n-1]=='X'||Tire[y][n-1]=='O')
    {
-       cout<<"Vous avez déjà tire a cet endroit veuillez changer"<<endl;
+       cout<<"Vous avez deja tire a cet endroit veuillez changer"<<endl;
        cout<<"Ou voulez-vous tirer : "<<endl;
         l=Demandel();
         n=Demanden();
@@ -203,12 +238,13 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
    {
        cout<<"Dans l'eau"<<endl;
        Tire[y][n-1]='O';
+       Recu[y][n-1]='O';
       touche=nbtouche;
         task=0;
    }
    else if(Recu[y][n-1]=='1')
    {
-       cout<<"Touché"<<endl;
+       cout<<"Touche"<<endl;
        Tire[y][n-1]='X';
        Recu[y][n-1]='T';
        touche=nbtouche+1;
@@ -220,7 +256,83 @@ int Tir(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
     return touche;
 
 }
+int TirIA(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
+{
+    int touche;
+    int task=1;
+    while(task)
+    {
 
+    int y=0;
+    if(l=='A')
+    {
+        y=0;
+    }
+     if(l=='B')
+    {
+        y=1;
+    }
+    if(l=='C')
+    {
+        y=2;
+    }
+    if(l=='D')
+    {
+        y=3;
+    }
+    if(l=='E')
+    {
+        y=4;
+    }
+     if(l=='F')
+    {
+        y=5;
+    }
+     if(l=='G')
+    {
+        y=6;
+    }
+    if(l=='H')
+    {
+        y=7;
+    }
+    if(l=='I')
+    {
+        y=8;
+    }
+     if(l=='J')
+    {
+        y=9;
+    }
+     if(Tire[y][n-1]=='X'||Tire[y][n-1]=='O')
+   {
+
+        l=RandLettre();
+        n=rand()%10+1;
+    }
+   else if(Recu[y][n-1]=='~')
+   {
+
+       Tire[y][n-1]='O';
+       Recu[y][n-1]='O';
+      touche=nbtouche;
+
+        task=0;
+   }
+   else if(Recu[y][n-1]=='1')
+   {
+
+       Tire[y][n-1]='X';
+       Recu[y][n-1]='T';
+       touche=nbtouche+1;
+       task=0;
+   }
+
+    }
+
+    return touche;
+
+}
 void Affiche(char Tab[10][10])
 {
     cout<<"  1 2 3 4 5 6 7 8 9 10"<<endl;
@@ -577,6 +689,8 @@ void InitJoueur(char Tab[10][10],int n)
 }
 int main()
 {
+    char wait;
+    int tour=1;
     int nbtouchej1=0;
     int nbtouchej2=0;
     srand((time(0)));
@@ -611,12 +725,36 @@ int main()
     }
     if(nbjoueur==1)
     {
+
+        InitJoueur(Joueur1,1);
         Generation(2,Joueur2);
         Generation(3,Joueur2);
         Generation(3,Joueur2);
         Generation(4,Joueur2);
-        Affiche(Joueur2);
-          //InitJoueur(Joueur1,1);
+       while(nbtouchej1<12 && nbtouchej2<12)
+       {
+           if(tour>1)
+        {
+            cout<<"Le joueur precedent a tire en"<<Lettre<<numero<<endl;
+        }
+         system("cls");
+         cout<<"Tir Joueur 1 : "<<endl;
+         Affiche(TirJoueur1);
+         cout<<"Bateau Joueur 1 : "<<endl;
+         Affiche(Joueur1);
+         cout<<"Ou voulez-vous tirer : "<<endl;
+         Lettre=Demandel();
+         numero=Demanden();
+         nbtouchej1=Tir(Lettre,numero,TirJoueur1,Joueur2,nbtouchej1);
+         cout<<"Joueur 1 voici vos Tirs : (entrer n'importe quoi pour quitter ce menu)"<<endl;
+         Affiche(TirJoueur1);
+         cin>>wait;
+         system("cls");
+         Lettre=RandLettre();
+         numero=rand()%10+1;
+         nbtouchej2=TirIA(Lettre,numero,TirJoueur2,Joueur1,nbtouchej2);
+        tour=tour+1;
+       }
 
     }
     if(nbjoueur==2){
@@ -630,6 +768,10 @@ int main()
     InitJoueur(Joueur2,2);
     while(nbtouchej1<12 && nbtouchej2<12)
     {
+        if(tour>1)
+        {
+            cout<<"Le joueur precedent a tire en"<<Lettre<<numero<<endl;
+        }
          system("cls");
          cout<<"Tir Joueur 1 : "<<endl;
          Affiche(TirJoueur1);
@@ -641,9 +783,10 @@ int main()
          nbtouchej1=Tir(Lettre,numero,TirJoueur1,Joueur2,nbtouchej1);
         cout<<"Joueur 1 voici vos Tirs : (entrer n'importe quoi pour quitter ce menu)"<<endl;
         Affiche(TirJoueur1);
-        cin>>Lettre;
+        cin>>wait;
 
         system("cls");
+        cout<<"Le joueur precedent a tire en"<<Lettre<<numero<<endl;
          cout<<"Tir Joueur 2 : "<<endl;
          Affiche(TirJoueur2);
          cout<<"Bateau Joueur 2 : "<<endl;
@@ -654,20 +797,20 @@ int main()
          nbtouchej2=Tir(Lettre,numero,TirJoueur2,Joueur1,nbtouchej2);
         cout<<"Joueur 1 voici vos Tirs : (entrer n'importe quoi pour quitter ce menu)"<<endl;
         Affiche(TirJoueur2);
-        cin>>Lettre;
+        cin>>wait;
 
     }
     system("cls");
     if(nbtouchej1<nbtouchej2)
     {
         cout<<"Bravo Joueur 2 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
-        cin>>Lettre;
+        cin>>wait;
 
     }
      if(nbtouchej2<nbtouchej1)
     {
         cout<<"Bravo Joueur 1 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
-        cin>>Lettre;
+        cin>>wait;
 
     }
     }
