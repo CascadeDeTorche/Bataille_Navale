@@ -642,6 +642,19 @@ int main()
         cin>>Lettre;
 
     }
+    system("cls");
+    if(nbtouchej1<nbtouchej2)
+    {
+        cout<<"Bravo Joueur 2 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cin>>Lettre;
+
+    }
+     if(nbtouchej2<nbtouchej1)
+    {
+        cout<<"Bravo Joueur 1 tu as gagnee (pour quitter le jeu rentre n'importe quoi) "<<endl;
+        cin>>Lettre;
+
+    }
     }
 
 
