@@ -1,5 +1,6 @@
 # depslib dependency file v1.0
-1591368996 source:c:\users\ethan\desktop\cours teletravail\c++\bataille_navale\main.cpp
+1591369307 source:c:\users\ethan\desktop\cours teletravail\c++\bataille_navale\main.cpp
 	<iostream>
 	<string>
+	<cstdlib>
 

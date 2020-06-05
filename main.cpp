@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 using namespace std;
 
 
@@ -155,6 +156,7 @@ int main()
     Lettre=Demandel();
     numero=Demanden();
     Tir(Lettre,numero,TirJoueur1);
+    system("cls");
     Affiche(TirJoueur1,10);
     if (nbjoueur==2)
     {
