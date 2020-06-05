@@ -3,7 +3,17 @@
 using namespace std;
 
 
-
+void Demande(char l,int n)
+{
+    cout<<"Quel lettre voulez vous ? : ";
+    cin>>l;
+    while((((l!='A')&(l!='B'))&((l!='C')&(l!='D')))&(((l!='E')&(l!='F'))&((l!='G')&(l!='=H')))&((l!='I')&(l!='J')))
+    {
+        cout<"Lettre invalide"
+        cout<<"Quel lettre voulez vous ? : ";
+        cin>>l;
+    }
+}
 
 void Affiche(char Tab[10][10], int n)
 {
@@ -61,6 +71,8 @@ void Affiche(char Tab[10][10], int n)
 
 int main()
 {
+    char Lettre;
+    int numero;
     char Joueur1[10][10];
     char Joueur2[10][10];
     char TirJoueur1[10][10];
