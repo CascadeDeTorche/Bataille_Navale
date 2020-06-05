@@ -733,11 +733,12 @@ int main()
         Generation(4,Joueur2);
        while(nbtouchej1<12 && nbtouchej2<12)
        {
-           if(tour>1)
+        system("cls");
+        if(tour>1)
         {
-            cout<<"Le joueur precedent a tire en"<<Lettre<<numero<<endl;
+            cout<<"Le joueur precedent a tire en "<<Lettre<<numero<<endl;
         }
-         system("cls");
+
          cout<<"Tir Joueur 1 : "<<endl;
          Affiche(TirJoueur1);
          cout<<"Bateau Joueur 1 : "<<endl;
@@ -753,7 +754,7 @@ int main()
          Lettre=RandLettre();
          numero=rand()%10+1;
          nbtouchej2=TirIA(Lettre,numero,TirJoueur2,Joueur1,nbtouchej2);
-        tour=tour+1;
+         tour=tour+1;
        }
 
     }
@@ -768,11 +769,11 @@ int main()
     InitJoueur(Joueur2,2);
     while(nbtouchej1<12 && nbtouchej2<12)
     {
+        system("cls");
         if(tour>1)
         {
-            cout<<"Le joueur precedent a tire en"<<Lettre<<numero<<endl;
+            cout<<"Le joueur precedent a tire en "<<Lettre<<numero<<endl;
         }
-         system("cls");
          cout<<"Tir Joueur 1 : "<<endl;
          Affiche(TirJoueur1);
          cout<<"Bateau Joueur 1 : "<<endl;
