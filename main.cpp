@@ -5,7 +5,259 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <cstdlib>
+#include <time.h>
+#include <conio.h>
+
+#define KEY_UP 72 // touches directionnelles pour la création de bateaux
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define KEY_ENTER 13
+#define KEY_r 114
+
 using namespace std;
+void Affiche(char Tab[10][10])
+{
+    cout<<"  1 2 3 4 5 6 7 8 9 10"<<endl;
+    for(int i=0;i<10;i++)
+    {
+        if(i==0)
+        {
+            cout<<"A";
+        }
+        if(i==1)
+        {
+            cout<<"B";
+        }
+        if(i==2)
+        {
+            cout<<"C";
+        }
+        if(i==3)
+        {
+            cout<<"D";
+        }
+        if(i==4)
+        {
+            cout<<"E";
+        }
+        if(i==5)
+        {
+            cout<<"F";
+        }
+        if(i==6)
+        {
+            cout<<"G";
+        }
+        if(i==7)
+        {
+            cout<<"H";
+        }
+        if(i==8)
+        {
+            cout<<"I";
+        }
+        if(i==9)
+        {
+            cout<<"J";
+        }
+        for(int j=0;j<10;j++)
+        {
+            cout<<" "<<Tab[i][j];
+        }
+        cout<<" "<<endl;
+    }
+}
+void Creation(int longueur, char Array[10][10]) // Génération par le joueur
+{
+    int coordx = 0;
+    int coordy = 0;
+    int dir = -1;
+    int task = 1;
+    int test = 1;
+    int test2 = 1;
+    for(int i=0;i<longueur;i++){
+        Array[coordx+i][coordy]='1';
+    }
+    while(test == 1){
+    switch(dir)
+    {
+        case -1: // vertical
+            while(dir==-1 && test==1)
+            {
+                task = 0;
+                system("cls");
+                Affiche(Array);
+                switch((task=getch())) {
+                    case KEY_UP:
+                        if(coordx > 0 && Array[coordx-1][coordy]=='~'){
+                            coordx = coordx - 1;
+                            Array[coordx][coordy]='1';
+                            Array[coordx+longueur][coordy]='~';
+                            break;
+                        }
+                        else
+                        break;
+                    case KEY_DOWN:
+                        if(coordx < 10-longueur && Array[coordx+longueur][coordy]=='~'){
+                            coordx = coordx + 1;
+                            Array[coordx+longueur-1][coordy]='1';
+                            Array[coordx-1][coordy]='~';
+                            break;
+                        }
+                        else
+                        break;
+                    case KEY_LEFT:
+                        for(int mov=coordx;mov<coordx+longueur;mov++){
+                            if(Array[mov][coordy-1]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordy > 0 && test2==1){
+                            coordy = coordy - 1;
+                            for(int mov=coordx;mov<coordx+longueur;mov++){
+                                Array[mov][coordy+1]='~';
+                                Array[mov][coordy]='1';
+                            }
+                            break;
+                        }
+                        else
+                        test2=1;
+                        break;
+                    case KEY_RIGHT:
+                        for(int mov=coordx;mov<coordx+longueur;mov++){
+                            if(Array[mov][coordy+1]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordy < 9 && test2==1){
+                            coordy = coordy + 1;
+                            for(int mov=coordx;mov<coordx+longueur;mov++){
+                                Array[mov][coordy-1]='~';
+                                Array[mov][coordy]='1';
+                            }
+                            break;
+                        }
+                        else
+                            test2=1;
+                        break;
+                    case KEY_r:
+                        for(int mov=1;mov<longueur;mov++){
+                            if(Array[coordx][coordy+mov]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordy+longueur<11 && test2 == 1){
+                            dir = 1;
+                        for(int mov=1;mov<longueur;mov++){
+                                Array[coordx+mov][coordy]='~';
+                                Array[coordx][coordy+mov]='1';
+                            }
+                            break;
+                        }
+                        else
+                        test2=1;
+                        break;
+                    case KEY_ENTER:
+                        Array[coordx][coordy]='1';
+                        test = 0;
+                        break;
+                    default:
+                      //  cout << endl << "null" << endl;  // Autre touche
+                        break;
+                }
+            }
+        case 1: //horizontal
+            while(dir==1 && test==1)
+            {
+                task = 0;
+                system("cls");
+                Affiche(Array);
+                switch((task=getch())) {
+                    case KEY_UP:
+                        for(int mov=coordy;mov<coordy+longueur;mov++){
+                            if(Array[coordx-1][mov]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordx > 0 && test2==1){
+                            coordx = coordx - 1;
+                            for(int mov=coordy;mov<coordy+longueur;mov++){
+                                Array[coordx+1][mov]='~';
+                                Array[coordx][mov]='1';
+                            }
+                            break;
+                        }
+                        else
+                        test2=1;
+                        break;
+                    case KEY_DOWN:
+                        for(int mov=coordy;mov<coordy+longueur;mov++){
+                            if(Array[coordx+1][mov]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordx < 9 && test2==1){
+                            coordx = coordx + 1;
+                            for(int mov=coordy;mov<coordy+longueur;mov++){
+                                Array[coordx-1][mov]='~';
+                                Array[coordx][mov]='1';
+                            }
+                            break;
+                        }
+                        else
+                        test2=1;
+                        break;
+                    case KEY_LEFT:
+                        if(coordy > 0 && Array[coordx][coordy-1]=='~'){
+                            coordy = coordy - 1;
+                            Array[coordx][coordy]='1';
+                            Array[coordx][coordy+longueur]='~';
+                            break;
+                        }
+                        else
+                        break;
+                    case KEY_RIGHT:
+                        if(coordy+longueur<10 && Array[coordx][coordy+longueur]=='~'){
+                            coordy = coordy + 1;
+                            Array[coordx][coordy+longueur-1]='1';
+                            Array[coordx][coordy-1]='~';
+                            break;
+                        }
+                        else
+                        break;
+                    case KEY_r:
+                        for(int mov=1;mov<longueur;mov++){
+                            if(Array[coordx+mov][coordy]=='1'){
+                                test2=0;
+                            }
+                        }
+                        if(coordx+longueur<11 && test2 == 1){
+                            dir = -1;
+                        for(int mov=1;mov<longueur;mov++){
+                                Array[coordx+mov][coordy]='1';
+                                Array[coordx][coordy+mov]='~';
+                            }
+                            break;
+                        }
+                        else
+                        test2=1;
+                        break;
+                    case KEY_ENTER:
+                        test = 0;
+                        break;
+                    default:
+                      //  cout << endl << "null" << endl;  // Autre touche
+                        break;
+                }
+            }
+        }
+    }
+}
 
 void Generation(int longueur, char Array[10][10]) // Génération des bateaux par l'ordinateur
 {
@@ -333,58 +585,7 @@ int TirIA(char l, int n,char Tire[10][10],char Recu[10][10],int nbtouche)
     return touche;
 
 }
-void Affiche(char Tab[10][10])
-{
-    cout<<"  1 2 3 4 5 6 7 8 9 10"<<endl;
-    for(int i=0;i<10;i++)
-    {
-        if(i==0)
-        {
-            cout<<"A";
-        }
-        if(i==1)
-        {
-            cout<<"B";
-        }
-        if(i==2)
-        {
-            cout<<"C";
-        }
-        if(i==3)
-        {
-            cout<<"D";
-        }
-        if(i==4)
-        {
-            cout<<"E";
-        }
-        if(i==5)
-        {
-            cout<<"F";
-        }
-        if(i==6)
-        {
-            cout<<"G";
-        }
-        if(i==7)
-        {
-            cout<<"H";
-        }
-        if(i==8)
-        {
-            cout<<"I";
-        }
-        if(i==9)
-        {
-            cout<<"J";
-        }
-        for(int j=0;j<10;j++)
-        {
-            cout<<" "<<Tab[i][j];
-        }
-        cout<<" "<<endl;
-    }
-}
+
 
 
 int creationbat(char casedepl, int casedepn,char Tab[10][10],int taille)
@@ -635,7 +836,7 @@ void InitJoueur(char Tab[10][10],int n)
     int bat2=0;
     int bat3=0;
     int bat4=0;
-    cout<<"1 : automatique, 2 : Manuelle : ";
+    cout<<"1 : automatique, 2 : Manuelle , 3 : Manuelle clavier : ";
     cin>>choix;
     if(choix==1)
     {
@@ -652,6 +853,7 @@ void InitJoueur(char Tab[10][10],int n)
         numero=Demanden();
         bat1=creationbat(Lettre,numero,Tab,2);
     }
+
     system("cls");
     Affiche(Tab);
 
@@ -680,6 +882,13 @@ void InitJoueur(char Tab[10][10],int n)
         numero=Demanden();
         bat4=creationbat(Lettre,numero,Tab,4);
     }
+    }
+    if(choix==3)
+    {
+       Creation(2,Tab);
+       Creation(3,Tab);
+       Creation(3,Tab);
+       Creation(4,Tab);
     }
     system("cls");
     cout<<"Joueur "<<n<<" voici votre plan : (entrer n'importe quoi pour quitter ce menu)"<<endl;
